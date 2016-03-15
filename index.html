@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="container straighten">
+    <div id="popup">
+        <div class="marker" id="ededdeddy"></div>
+        <div class="marker" id="grimreaper"></div>
+        <div class="marker" id="kidsnextdoor"></div>
+        <div class="marker" id="courage"></div>
+        <div class="marker" id="powerpuff"></div>
+        <div class="marker" id="fosters"></div>
+        <div class="marker" id="dexter"></div>
+        <img src="http://cdn.pcwallart.com/images/cartoon-network-characters-names-wallpaper-1.jpg"/>
+
+    </div>
+</div>
+
+<div class="textbox">
+    <div class="popuptitle">What were the best cartoons from Cartoon Network</div>
+    Remember the cartoon you watched growing up? What was you favorite? <br /> <br />Click on them to remember.
+</div>
+
+
+<style>
+.container{
+    width: 60%;
+    display: inline-block;
+    position: relative;
+}
+.textbox {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.5em;
+}
+.container img {    
+    width: 100%;
+}
+.marker{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: yellow;
+    border: 2px solid white;
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+.marker:hover {
+    background-color: red;
+}
+#ededdeddy {
+    top:90%;
+    left: 3%;
+}
+#kidsnextdoor {
+    top:30%;
+    left: 43%;
+}
+#grimreaper {
+    top: 26%;
+    right: 35%;
+}
+#courage {
+    top: 30%;
+    right: 60%;
+}
+
+#powerpuff {
+    top: 33%;
+    right: 93%;
+}
+#fosters {
+    top: 11%;
+    right: 59%;
+}
+#dexter {
+    top:23%;
+    left: 78%;
+}
+.straighten:after{
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden
+}
+
+#popup {
+    position:relative;
+}
+.hoverbox {
+    position:absolute; 
+    padding:0.5em; 
+    background:#FFF; 
+    box-shadow:1px 1px 8px rgba(0,0,0,.4); 
+    z-index:300; 
+    font-family:'Roboto', Arial, sans-serif; 
+    line-height:1.3em; 
+    min-width:100px; 
+    max-width:200px;
+}
+.popuptitle {
+    color: #C72428;
+    font-family:'Roboto', Arial, sans-serif;
+    letter-spacing: 0.01em;
+    font-size:18px; 
+    font-weight:700;
+    clear:both;
+}
+@media screen and (max-width: 900px) {
+.container{
+    width: 90%
+}
+.textbox{
+    width: 90%
+}
+}
+
+</style>
+
+<script>
+$(document).ready(function() {
+
+var data = 
+[{"id":"grimreaper","name":"Grim Adventures of Billy and Mandy", "description":"Started as cartoon short, Grim Adventures turned into one of the better cartoons of the early 2000's. From the Jamaican-talking harbinger of death the scary young Mandy, it was a cartoon slightly ahead of its time."},
+{"id":"ededdeddy","name":"Ed, Edd and Eddy", "description":"Running from 1999-2009, the hijinks of the lovable trio who just wanted to be popular and make a quick buck left children rearing laughing. It also left you with a strong desire for jawbreakers."},
+{"id":"courage","name":"Courage the Cowardly Dog", "description":"One of the more eerie cartoons from th era. It was almost like a animated Stanley Kubrick film when this show came on. But it had its following none the less. And you can probably go up to any person in their 20's, say return the slab and they'll know what you mean."},
+{"id":"fosters","name":"Foster's Home for Imaginary Friends", "description":"Among the last of the great cartoons from Cartoon network, Foster's Home came out in 2004! The antics of Blooregard Q. Kazoo and Mac made imaginary friends cool again, even though most of us were entering high school at the time."},
+{"id":"powerpuff","name":"Powerpuff Girls", "description":"These three cute little superheroes always saved the day, even with having bedtime at 8:00. One of the few girl-centric shows on Cartoon Network, it was a big hit with kids. From the cutesy Blossom to the bossy Buttercup, it gave girls a different show."},
+{"id":"dexter","name":"Dexter's Laboratory", "description":"From the funny moments of Dee Dee breaking everything to Mandark trying to date his sister, it's hard being a boy genius, especially when you're parents don't notice the electric bill goes directly to your room."},
+{"id":"kidsnextdoor","name":"Codename: Kids Next Door", "description":"Probably top three best cartoons of this era. With its kid-centric life, anti-adult message and futuristic technology, who didn't want to be a member of the KND? At least till you turned 13."}];
+
+
+$(".marker").click(function(){
+    $('.textbox').empty();
+    for (var i=0; i<data.length; i++) {
+    if (this.id == data[i].id) {
+        $(".textbox").append('<div class="popuptitle">'+data[i].name+'</div>' + data[i].description);
+    } 
+    } 
+});
+
+
+var pos, thex, they;
+
+$(".marker").mouseover(function(e){
+    $(".hoverbox").remove();
+
+    // POSITIONING THE POP UP
+    if (navigator.userAgent.indexOf("Firefox")!=-1){
+        
+        pos = $("#popup").offset()
+        thex = e.pageX - pos.left + 10;
+        they = e.pageY - pos.top + 0;
+        if (thex > $("#popup").width() - 150) { thex = $("#popup").width() - 150 };
+        if (they > $("#popup").height() - 100) { they = $("#popup").height() - 100 };
+    } else {
+
+        pos = $("#popup").offset()
+        thex = event.pageX - pos.left + 10;
+        they = event.pageY - pos.top + 0;
+        if (thex > $("#popup").width() - 150) { thex = $("#popup").width() - 150 };
+        if (they > $("#popup").height() - 100) { they = $("#popup").height() - 100 };
+    }
+
+    // APPENDING TEXT TO THE POP UP
+    for (var i=0; i<data.length; i++) {
+    if (this.id == data[i].id) {
+    $("#popup").append('<div class="hoverbox" style="top:'+they+'px; left:'+thex+'px;"><div class="popuptitle">'+data[i].name+'</div></div>');
+    } 
+    
+
+    }   
+});
+
+$(".marker").mouseleave(function(){
+    $(".hoverbox").remove();
+});
+
+
+});//doc ready
+</script>
+
+</body>
+</html>
+
+
+
